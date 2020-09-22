@@ -52,7 +52,7 @@ bool checkWinner()
     return existsWinner;
 }
 
-// Metodo para realizar una jugada
+// Metodo para ver si la jugada se puede realizar
 bool checkMovement(int Position, char identifier)
 {
 
@@ -80,7 +80,7 @@ bool checkMovement(int Position, char identifier)
 
     return IsSuccesed;
 }
-
+// Metodo para realizar una jugada
 void makeMovement(int Position, char identifier, int *Player)
 {
     if (!checkMovement(Position, identifier))
@@ -91,6 +91,8 @@ void makeMovement(int Position, char identifier, int *Player)
         cin.get();
     }
 }
+
+//Metodo para imprimir el resultado
 void showresult(bool existsWinner, int Player)
 {
     if (existsWinner)
@@ -115,13 +117,13 @@ int main()
         identifier = (Player == 1) ? 'X' : 'O';
         cout << "Jugador " << Player << ", ingresa un numero:  ";
         cin >> Position;
-        makeMovement(Position, identifier, &Player);
-        existsWinner = checkWinner();
+        makeMovement(Position, identifier, &Player);  // Aqui verifica si la jugada es posible
+        existsWinner = checkWinner(); // Aqui se verifica si existe el ganador o no
         Player++;
         jugadas++;
     } while (!existsWinner && jugadas!=9);
     mostrarTablero(Board);   //Aqui se reemplaza para la funcion repetida
-    showresult(existsWinner, Player);    //Aqui se verifica el ganador
+    showresult(existsWinner, Player);    //Aqui se muestra el ganador de haberlo
     return 0;
 }
 
